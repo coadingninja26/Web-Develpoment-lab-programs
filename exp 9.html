@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: white;
+            padding: 25px 35px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .options {
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #3641a1;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #48bb78;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background: #03c75e;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h2>Employee Form</h2>
+
+    <form onsubmit="return validateForm()">
+
+        <!-- Name -->
+        <label>Name:</label>
+        <input type="text" id="name">
+
+        <!-- Date of Birth -->
+        <label>Date of Birth:</label>
+        <input type="date" id="dob">
+
+        <!-- Joining Date -->
+        <label>Joining Date:</label>
+        <input type="date" id="joiningDate">
+
+        <!-- Employee ID -->
+        <label>Employee ID:</label>
+        <input type="text" id="empid">
+
+        <!-- Salary -->
+        <label>Salary:</label>
+        <input type="text" id="salary">
+
+        <!-- Experience -->
+        <label>Years of Experience:</label>
+        <input type="text" id="experience">
+
+        <!-- Gender -->
+        <label>Gender:</label>
+        <div class="options">
+            <input type="radio" name="gender"> Male
+            <input type="radio" name="gender"> Female
+            <input type="radio" name="gender"> Other
+        </div>
+
+        <!-- Skills -->
+        <label>Skills:</label>
+        <div class="options">
+            <input type="checkbox"> HTML<br>
+            <input type="checkbox"> CSS<br>
+            <input type="checkbox"> JavaScript<br>
+            <input type="checkbox"> Python<br>
+
+            <!-- Other -->
+            <input type="checkbox" id="otherSkill" onclick="toggleOther()"> Other<br>
+            <input type="text" id="otherInput" placeholder="Enter other skill" style="display:none; margin-top:5px;">
+        </div>
+
+        <!-- Button -->
+        <input type="button" value="Click Me" onclick="showMessage()">
+
+        <!-- Submit -->
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
+
+<script>
+    function showMessage() {
+        alert("Hello! Button Clicked ");
+    }
+
+    function toggleOther() {
+        let check = document.getElementById("otherSkill");
+        let input = document.getElementById("otherInput");
+
+        if (check.checked) {
+            input.style.display = "block";
+        } else {
+            input.style.display = "none";
+            input.value = "";
+        }
+    }
+
+    function validateForm() {
+        let name = document.getElementById("name").value;
+        let dob = document.getElementById("dob").value;
+        let join = document.getElementById("joiningDate").value;
+        let id = document.getElementById("empid").value;
+        let salary = document.getElementById("salary").value;
+        let exp = document.getElementById("experience").value;
+
+        if (name === "" || dob === "" || join === "" || id === "" || salary === "" || exp === "") {
+            alert("Please fill all required fields!");
+            return false;
+        }
+
+        if (isNaN(salary) || isNaN(exp)) {
+            alert("Salary and Experience must be numbers!");
+            return false;
+        }
+
+        alert("Form submitted successfully!");
+        return true;
+    }
+</script>
+
+</body>
+</html>
